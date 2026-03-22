@@ -1,0 +1,66 @@
+{
+  "version": "2025.0",
+  "waypoints": [
+    {
+      "anchor": {
+        "x": 5.528250000000001,
+        "y": 2.2407499999999994
+      },
+      "prevControl": null,
+      "nextControl": {
+        "x": 5.397477472985109,
+        "y": 2.4538193459372777
+      },
+      "isLocked": false,
+      "linkedName": "FrontRightBack"
+    },
+    {
+      "anchor": {
+        "x": 5.138620923913043,
+        "y": 2.9966796874999995
+      },
+      "prevControl": {
+        "x": 5.2565924178050425,
+        "y": 2.7762647909324354
+      },
+      "nextControl": null,
+      "isLocked": false,
+      "linkedName": "FrontRightRight"
+    }
+  ],
+  "rotationTargets": [],
+  "constraintZones": [],
+  "pointTowardsZones": [],
+  "eventMarkers": [
+    {
+      "name": "raiseElevatorTo4",
+      "waypointRelativePos": 0.846184738955823,
+      "endWaypointRelativePos": null,
+      "command": {
+        "type": "named",
+        "data": {
+          "name": "raiseElevatorTo4"
+        }
+      }
+    }
+  ],
+  "globalConstraints": {
+    "maxVelocity": 3.0,
+    "maxAcceleration": 3.0,
+    "maxAngularVelocity": 540.0,
+    "maxAngularAcceleration": 720.0,
+    "nominalVoltage": 12.0,
+    "unlimited": false
+  },
+  "goalEndState": {
+    "velocity": 0,
+    "rotation": -150.0
+  },
+  "reversed": false,
+  "folder": "Right Start 3 Coral",
+  "idealStartingState": {
+    "velocity": 0,
+    "rotation": -150.0
+  },
+  "useDefaultConstraints": true
+}

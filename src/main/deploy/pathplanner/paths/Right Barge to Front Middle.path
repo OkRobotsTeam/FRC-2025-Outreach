@@ -1,0 +1,66 @@
+{
+  "version": "2025.0",
+  "waypoints": [
+    {
+      "anchor": {
+        "x": 7.13,
+        "y": 5.0
+      },
+      "prevControl": null,
+      "nextControl": {
+        "x": 6.3393749999999995,
+        "y": 4.7075
+      },
+      "isLocked": false,
+      "linkedName": "RightBarge"
+    },
+    {
+      "anchor": {
+        "x": 5.75,
+        "y": 3.75
+      },
+      "prevControl": {
+        "x": 6.781124999999999,
+        "y": 3.7373749999999997
+      },
+      "nextControl": null,
+      "isLocked": false,
+      "linkedName": "FrontMiddle"
+    }
+  ],
+  "rotationTargets": [],
+  "constraintZones": [],
+  "pointTowardsZones": [],
+  "eventMarkers": [
+    {
+      "name": "algaeHalfway",
+      "waypointRelativePos": 0.5480616038236855,
+      "endWaypointRelativePos": null,
+      "command": {
+        "type": "named",
+        "data": {
+          "name": "algaeHalfway"
+        }
+      }
+    }
+  ],
+  "globalConstraints": {
+    "maxVelocity": 2.0,
+    "maxAcceleration": 2.0,
+    "maxAngularVelocity": 360.0,
+    "maxAngularAcceleration": 360.0,
+    "nominalVoltage": 12.0,
+    "unlimited": false
+  },
+  "goalEndState": {
+    "velocity": 0,
+    "rotation": 90.0
+  },
+  "reversed": false,
+  "folder": "Center Start 1 Coral 2 Algae",
+  "idealStartingState": {
+    "velocity": 0,
+    "rotation": -90.0
+  },
+  "useDefaultConstraints": false
+}

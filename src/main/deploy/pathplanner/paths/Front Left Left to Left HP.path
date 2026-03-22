@@ -1,0 +1,66 @@
+{
+  "version": "2025.0",
+  "waypoints": [
+    {
+      "anchor": {
+        "x": 4.7869055706521735,
+        "y": 5.30965523097826
+      },
+      "prevControl": null,
+      "nextControl": {
+        "x": 4.166186664788475,
+        "y": 6.04939921703247
+      },
+      "isLocked": false,
+      "linkedName": "FrontLeftLeft"
+    },
+    {
+      "anchor": {
+        "x": 1.1445652173913043,
+        "y": 7.187457540760869
+      },
+      "prevControl": {
+        "x": 1.8276260726079276,
+        "y": 6.373417312595985
+      },
+      "nextControl": null,
+      "isLocked": false,
+      "linkedName": "LeftHP"
+    }
+  ],
+  "rotationTargets": [],
+  "constraintZones": [],
+  "pointTowardsZones": [],
+  "eventMarkers": [
+    {
+      "name": "lowerElevator",
+      "waypointRelativePos": 0.0,
+      "endWaypointRelativePos": null,
+      "command": {
+        "type": "named",
+        "data": {
+          "name": "lowerElevator"
+        }
+      }
+    }
+  ],
+  "globalConstraints": {
+    "maxVelocity": 3.0,
+    "maxAcceleration": 3.0,
+    "maxAngularVelocity": 540.0,
+    "maxAngularAcceleration": 720.0,
+    "nominalVoltage": 12.0,
+    "unlimited": false
+  },
+  "goalEndState": {
+    "velocity": 0,
+    "rotation": 127.00000000000001
+  },
+  "reversed": false,
+  "folder": "Left Start 3 Coral",
+  "idealStartingState": {
+    "velocity": 0,
+    "rotation": -29.999999999999996
+  },
+  "useDefaultConstraints": true
+}

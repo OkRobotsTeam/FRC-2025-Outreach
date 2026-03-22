@@ -1,0 +1,93 @@
+{
+  "version": "2025.0",
+  "waypoints": [
+    {
+      "anchor": {
+        "x": 1.1445652173913043,
+        "y": 7.187457540760869
+      },
+      "prevControl": null,
+      "nextControl": {
+        "x": 2.0808787199476306,
+        "y": 6.071602560294901
+      },
+      "isLocked": false,
+      "linkedName": "LeftHP"
+    },
+    {
+      "anchor": {
+        "x": 3.7973335597826092,
+        "y": 5.1367781929347816
+      },
+      "prevControl": {
+        "x": 2.9020642149921283,
+        "y": 6.203718650928303
+      },
+      "nextControl": null,
+      "isLocked": false,
+      "linkedName": "BackLeftFront"
+    }
+  ],
+  "rotationTargets": [
+    {
+      "waypointRelativePos": 0.6409130816505705,
+      "rotationDegrees": 29.999999999999996
+    }
+  ],
+  "constraintZones": [],
+  "pointTowardsZones": [],
+  "eventMarkers": [
+    {
+      "name": "deliver",
+      "waypointRelativePos": 0.25341365461846893,
+      "endWaypointRelativePos": null,
+      "command": {
+        "type": "named",
+        "data": {
+          "name": "deliver"
+        }
+      }
+    },
+    {
+      "name": "stopDelivery",
+      "waypointRelativePos": 0.6028112449799176,
+      "endWaypointRelativePos": null,
+      "command": {
+        "type": "named",
+        "data": {
+          "name": "stopDelivery"
+        }
+      }
+    },
+    {
+      "name": "raiseElevatorTo4",
+      "waypointRelativePos": 0.7979919678714873,
+      "endWaypointRelativePos": null,
+      "command": {
+        "type": "named",
+        "data": {
+          "name": "raiseElevatorTo4"
+        }
+      }
+    }
+  ],
+  "globalConstraints": {
+    "maxVelocity": 3.0,
+    "maxAcceleration": 3.0,
+    "maxAngularVelocity": 540.0,
+    "maxAngularAcceleration": 720.0,
+    "nominalVoltage": 12.0,
+    "unlimited": false
+  },
+  "goalEndState": {
+    "velocity": 0,
+    "rotation": 29.999999999999996
+  },
+  "reversed": false,
+  "folder": "Left Start 3 Coral",
+  "idealStartingState": {
+    "velocity": 0,
+    "rotation": 127.00000000000001
+  },
+  "useDefaultConstraints": true
+}
