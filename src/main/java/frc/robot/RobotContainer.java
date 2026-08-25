@@ -32,13 +32,15 @@ import edu.wpi.first.wpilibj2.command.sysid.SysIdRoutine;
 import frc.robot.commands.DriveCommands;
 import frc.robot.generated.TunerConstants;
 import frc.robot.subsystems.Delivery;
-import frc.robot.subsystems.Vision.Vision;
-import frc.robot.subsystems.Vision.VisionConstants;
-import frc.robot.subsystems.Vision.VisionIOPhotonVision;
+//import frc.robot.subsystems.Vision.Vision;
+//import frc.robot.subsystems.Vision.VisionConstants;
+//import frc.robot.subsystems.Vision.VisionIOPhotonVision;
 import frc.robot.subsystems.drive.*;
 import frc.robot.subsystems.Pickup;
 import frc.robot.subsystems.Elevator;
 import org.littletonrobotics.junction.networktables.LoggedDashboardChooser;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -65,9 +67,9 @@ public class RobotContainer {
 
     private final Delivery delivery = new Delivery();
     private final Elevator elevator = new Elevator();
-    private final Pickup pickup = new Pickup();
+//    private final Pickup pickup = new Pickup();
 
-    public final Vision vision;
+//    public final Vision vision;
     public String visionModeString = "Simple";
 
     /**
@@ -81,10 +83,10 @@ public class RobotContainer {
                 new ModuleIOTalonFX(TunerConstants.BackLeft),
                 new ModuleIOTalonFX(TunerConstants.BackRight));
 
-        vision = new Vision(swerveDrivetrain,
-                new VisionIOPhotonVision(centerAlignmentCameraName, robotToCenterAlignmentCamera));
-//                new VisionIOPhotonVision(leftAlignmentCameraName, robotToLeftAlignmentCamera),
-//                new VisionIOPhotonVision(rightAlignmentCameraName, robotToRightAlignmentCamera));
+//        vision = new Vision(swerveDrivetrain,
+//                new VisionIOPhotonVision(centerAlignmentCameraName, robotToCenterAlignmentCamera));
+////                new VisionIOPhotonVision(leftAlignmentCameraName, robotToLeftAlignmentCamera),
+////                new VisionIOPhotonVision(rightAlignmentCameraName, robotToRightAlignmentCamera));
 
         // Logic Triggers
         registerNamedCommands();
@@ -137,9 +139,9 @@ public class RobotContainer {
     public void init() {
         elevator.transitionToState(0);
         delivery.setDeliveryMotor(0);
-        pickup.foldPickup();
+//        pickup.foldPickup();
         swerveDrivetrain.setSpeed(1.0);
-        vision.visionEnabled = true;
+//        vision.visionEnabled = true;
     }
 
     public void teleopInit() {
@@ -155,16 +157,16 @@ public class RobotContainer {
         }, delivery));
 
 
-        pickup.raisePickup();
+//        pickup.raisePickup();
     }
 
     public void periodic() {
         SmartDashboard.putNumber("EncoderPositionInches", elevator.getElevatorPosition());
     }
     public void teleopPeriodic() {
-        if (Math.abs(manipulatorController.getHID().getRightY()) > 0.2) {
-            pickup.manualAdjust(-manipulatorController.getHID().getRightY() * 0.16);
-        }
+//        if (Math.abs(manipulatorController.getHID().getRightY()) > 0.2) {
+//            pickup.manualAdjust(-manipulatorController.getHID().getRightY() * 0.16);
+//        }
 
         double manualAdjustAmount = manipulatorController.getHID().getLeftY();
         if (abs(manualAdjustAmount) < 0.2) {
@@ -214,42 +216,42 @@ public class RobotContainer {
                 () -> -driveController.getLeftY(),
                 approachPose);
     }
-
-    public Pose2d getPoseOfNearestReefBranch(FieldConstants.ReefSide side) {
-        Pose2d currentPose = swerveDrivetrain.getPose();
-        List<AprilTag> aprilTags = VisionConstants.aprilTagLayout.getTags();
-        AprilTag closest = aprilTags.get(0);
-        double bestDistance = Double.POSITIVE_INFINITY;
-
-        for (AprilTag tag : aprilTags) {
-            if (!VisionConstants.reefTags.contains(tag.ID)) {
-                continue;
-            }
-
-            double currentDistance = tag.pose.getTranslation().toTranslation2d().getDistance(currentPose.getTranslation());
-
-            if (currentDistance < bestDistance) {
-                bestDistance = currentDistance;
-                closest = tag;
-            }
-        }
-
-        Pose2d nearestTagPose = closest.pose.toPose2d();
-
-        Translation2d transformToBranch = new Translation2d();
-
-        if (side == FieldConstants.ReefSide.LEFT) {
-            transformToBranch = new Translation2d(Units.inchesToMeters(2), nearestTagPose.getRotation().plus(Rotation2d.fromDegrees(90)));
-        } else if (side == FieldConstants.ReefSide.RIGHT) {
-            transformToBranch = new Translation2d(Units.inchesToMeters(16), nearestTagPose.getRotation().plus(Rotation2d.fromDegrees(90)));
-        }
-
-        Translation2d nearestTagTranslation = nearestTagPose.getTranslation().plus(transformToBranch);
-
-        System.out.println("Closest reef tag ID: " + closest.ID);
-        System.out.println("Closest reef tag pose: " + nearestTagTranslation);
-        return new Pose2d(nearestTagTranslation, nearestTagPose.getRotation());
-    }
+//
+//    public Pose2d getPoseOfNearestReefBranch(FieldConstants.ReefSide side) {
+//        Pose2d currentPose = swerveDrivetrain.getPose();
+//        List<AprilTag> aprilTags = VisionConstants.aprilTagLayout.getTags();
+//        AprilTag closest = aprilTags.get(0);
+//        double bestDistance = Double.POSITIVE_INFINITY;
+//
+//        for (AprilTag tag : aprilTags) {
+//            if (!VisionConstants.reefTags.contains(tag.ID)) {
+//                continue;
+//            }
+//
+//            double currentDistance = tag.pose.getTranslation().toTranslation2d().getDistance(currentPose.getTranslation());
+//
+//            if (currentDistance < bestDistance) {
+//                bestDistance = currentDistance;
+//                closest = tag;
+//            }
+//        }
+//
+//        Pose2d nearestTagPose = closest.pose.toPose2d();
+//
+//        Translation2d transformToBranch = new Translation2d();
+//
+//        if (side == FieldConstants.ReefSide.LEFT) {
+//            transformToBranch = new Translation2d(Units.inchesToMeters(2), nearestTagPose.getRotation().plus(Rotation2d.fromDegrees(90)));
+//        } else if (side == FieldConstants.ReefSide.RIGHT) {
+//            transformToBranch = new Translation2d(Units.inchesToMeters(16), nearestTagPose.getRotation().plus(Rotation2d.fromDegrees(90)));
+//        }
+//
+//        Translation2d nearestTagTranslation = nearestTagPose.getTranslation().plus(transformToBranch);
+//
+//        System.out.println("Closest reef tag ID: " + closest.ID);
+//        System.out.println("Closest reef tag pose: " + nearestTagTranslation);
+//        return new Pose2d(nearestTagTranslation, nearestTagPose.getRotation());
+//    }
 
     /**
      * Button and Command mappings
@@ -260,21 +262,21 @@ public class RobotContainer {
         driveController.a().onTrue(
                 Commands.runOnce(() -> swerveDrivetrain.setPose(new Pose2d())));
 
-//         Driver Right Bumper: Approach Nearest Right-Side Reef Branch
-        driveController.rightBumper().and(() -> Objects.equals(autoLineUp.get(), "New Line Up"))
-                .whileTrue(
-                        joystickApproach(
-                                () -> getPoseOfNearestReefBranch(FieldConstants.ReefSide.RIGHT)
-                        )
-                );
+////         Driver Right Bumper: Approach Nearest Right-Side Reef Branch
+//        driveController.rightBumper().and(() -> Objects.equals(autoLineUp.get(), "New Line Up"))
+//                .whileTrue(
+//                        joystickApproach(
+//                                () -> getPoseOfNearestReefBranch(FieldConstants.ReefSide.RIGHT)
+//                        )
+//                );
 
-        // Driver Left Bumper: Approach Nearest Left-Side Reef Branch
-        driveController.leftBumper().and(() -> Objects.equals(autoLineUp.get(), "New Line Up"))
-                .whileTrue(
-                        joystickApproach(
-                                () -> getPoseOfNearestReefBranch(FieldConstants.ReefSide.LEFT)
-                        )
-                );
+//        // Driver Left Bumper: Approach Nearest Left-Side Reef Branch
+//        driveController.leftBumper().and(() -> Objects.equals(autoLineUp.get(), "New Line Up"))
+//                .whileTrue(
+//                        joystickApproach(
+//                                () -> getPoseOfNearestReefBranch(FieldConstants.ReefSide.LEFT)
+//                        )
+//                );
 
 
         // Driver Right Bumper: Approach Nearest Right-Side Reef Branch
@@ -312,17 +314,17 @@ public class RobotContainer {
 
         manipulatorController.y().onTrue(Commands.runOnce(elevator::toggleHigh));
 
-        manipulatorController.a().onTrue(Commands.runOnce(pickup::lowerPickup));
-        manipulatorController.a().onFalse(Commands.runOnce(pickup::raisePickup));
+//        manipulatorController.a().onTrue(Commands.runOnce(pickup::lowerPickup));
+//        manipulatorController.a().onFalse(Commands.runOnce(pickup::raisePickup));
+//
+//        manipulatorController.b().onTrue(Commands.runOnce(pickup::runIntakeOut));
+//        manipulatorController.b().onFalse(Commands.runOnce(pickup::stopIntake));
+//
+//        manipulatorController.x().onTrue(Commands.runOnce(pickup::togglePickup));
+//
+//        driveController.a().onTrue(Commands.runOnce(() -> pickup.raisePickupToPosition(2.0)));
 
-        manipulatorController.b().onTrue(Commands.runOnce(pickup::runIntakeOut));
-        manipulatorController.b().onFalse(Commands.runOnce(pickup::stopIntake));
-
-        manipulatorController.x().onTrue(Commands.runOnce(pickup::togglePickup));
-
-        driveController.a().onTrue(Commands.runOnce(() -> pickup.raisePickupToPosition(2.0)));
-
-        manipulatorController.povLeft().onTrue(Commands.runOnce(pickup::middlePickup));
+//        manipulatorController.povLeft().onTrue(Commands.runOnce(pickup::middlePickup));
 
         elevatorButtons.button(1).onTrue(Commands.runOnce(() -> elevator.transitionToState(4)));
         elevatorButtons.button(2).onTrue(Commands.runOnce(() -> elevator.transitionToState(3)));
@@ -344,21 +346,21 @@ public class RobotContainer {
         driveController.a().onTrue(
                 Commands.runOnce(() -> swerveDrivetrain.setPose(new Pose2d())));
 
-//         Driver Right Bumper: Approach Nearest Right-Side Reef Branch
-        driveController.rightBumper().and(() -> Objects.equals(autoLineUp.get(), "New Line Up"))
-                .whileTrue(
-                        joystickApproach(
-                                () -> getPoseOfNearestReefBranch(FieldConstants.ReefSide.RIGHT)
-                        )
-                );
+////         Driver Right Bumper: Approach Nearest Right-Side Reef Branch
+//        driveController.rightBumper().and(() -> Objects.equals(autoLineUp.get(), "New Line Up"))
+//                .whileTrue(
+//                        joystickApproach(
+//                                () -> getPoseOfNearestReefBranch(FieldConstants.ReefSide.RIGHT)
+//                        )
+//                );
 
-        // Driver Left Bumper: Approach Nearest Left-Side Reef Branch
-        driveController.leftBumper().and(() -> Objects.equals(autoLineUp.get(), "New Line Up"))
-                .whileTrue(
-                        joystickApproach(
-                                () -> getPoseOfNearestReefBranch(FieldConstants.ReefSide.LEFT)
-                        )
-                );
+//        // Driver Left Bumper: Approach Nearest Left-Side Reef Branch
+//        driveController.leftBumper().and(() -> Objects.equals(autoLineUp.get(), "New Line Up"))
+//                .whileTrue(
+//                        joystickApproach(
+//                                () -> getPoseOfNearestReefBranch(FieldConstants.ReefSide.LEFT)
+//                        )
+//                );
 
 
         // Driver Right Bumper: Approach Nearest Right-Side Reef Branch
@@ -445,14 +447,14 @@ public class RobotContainer {
         driveController.rightTrigger().onTrue(Commands.runOnce(() -> delivery.setDeliveryMotor(CONVEYOR_OUT_SPEED)));
         driveController.rightTrigger().onFalse(Commands.runOnce(() -> delivery.setDeliveryMotor(0)));
 
-        driveController.y().onTrue(Commands.runOnce(pickup::runIntakeIn));
-        driveController.y().onFalse(Commands.runOnce(pickup::stopIntake));
-
-        driveController.b().onTrue(Commands.runOnce(pickup::runIntakeOut));
-        driveController.b().onFalse(Commands.runOnce(pickup::stopIntake));
-
-        driveController.x().onTrue(Commands.runOnce(pickup::lowerPickup));
-        driveController.x().onFalse(Commands.runOnce(pickup::raisePickup));
+//        driveController.y().onTrue(Commands.runOnce(pickup::runIntakeIn));
+//        driveController.y().onFalse(Commands.runOnce(pickup::stopIntake));
+//
+//        driveController.b().onTrue(Commands.runOnce(pickup::runIntakeOut));
+//        driveController.b().onFalse(Commands.runOnce(pickup::stopIntake));
+//
+//        driveController.x().onTrue(Commands.runOnce(pickup::lowerPickup));
+//        driveController.x().onFalse(Commands.runOnce(pickup::raisePickup));
     }
 
     /**
@@ -468,14 +470,14 @@ public class RobotContainer {
         NamedCommands.registerCommand("deliver", new InstantCommand(() -> delivery.setDeliveryMotor(-0.25)));
         NamedCommands.registerCommand("deliveryIn", new InstantCommand(() -> delivery.setDeliveryMotor(0.4)));
         NamedCommands.registerCommand("stopDelivery", new InstantCommand(() -> delivery.setDeliveryMotor(0)));
-        NamedCommands.registerCommand("algaeOut", new InstantCommand(pickup::lowerPickup));
-        NamedCommands.registerCommand("algaeIn", new InstantCommand(pickup::raisePickup));
-        NamedCommands.registerCommand("algaeInFarther", new InstantCommand(() -> pickup.raisePickupToPosition(2.0)));
-        NamedCommands.registerCommand("algaeHalfway", new InstantCommand(pickup::middlePickup));
-        NamedCommands.registerCommand("algaeInAllTheWay", new InstantCommand(pickup::foldPickup));
-        NamedCommands.registerCommand("algaeIntake", new InstantCommand(() -> pickup.setIntakeMotors(-1)));
-        NamedCommands.registerCommand("algaeOuttake", new InstantCommand(() -> pickup.setIntakeMotors(1)));
-        NamedCommands.registerCommand("algaeStop", new InstantCommand(() -> pickup.setIntakeMotors(0)));
+//        NamedCommands.registerCommand("algaeOut", new InstantCommand(pickup::lowerPickup));
+//        NamedCommands.registerCommand("algaeIn", new InstantCommand(pickup::raisePickup));
+//        NamedCommands.registerCommand("algaeInFarther", new InstantCommand(() -> pickup.raisePickupToPosition(2.0)));
+//        NamedCommands.registerCommand("algaeHalfway", new InstantCommand(pickup::middlePickup));
+//        NamedCommands.registerCommand("algaeInAllTheWay", new InstantCommand(pickup::foldPickup));
+//        NamedCommands.registerCommand("algaeIntake", new InstantCommand(() -> pickup.setIntakeMotors(-1)));
+//        NamedCommands.registerCommand("algaeOuttake", new InstantCommand(() -> pickup.setIntakeMotors(1)));
+//        NamedCommands.registerCommand("algaeStop", new InstantCommand(() -> pickup.setIntakeMotors(0)));
         NamedCommands.registerCommand("waitForElevator", elevator.waitForElevator().withTimeout(4.0));
         NamedCommands.registerCommand("waitForElevatorPrecise", elevator.waitForElevatorPrecise().withTimeout(4.0));
         // NamedCommands.registerCommand("wait", new InstantCommand(() -> TimeUnit.wait(5000)));
@@ -492,7 +494,7 @@ public class RobotContainer {
 
     public void autonomousInit() {
         delivery.setDefaultCommand(Commands.idle(delivery));
-        vision.visionEnabled = true;
+//        vision.visionEnabled = true;
         swerveDrivetrain.visionMode = Drive.VisionMode.SIMPLE;
         visionModeString = "Anchoring";
     }
